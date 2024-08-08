@@ -37,10 +37,7 @@ void SA::run() {
     while (temperature > 1.0) {
         // Generate a new solution by applying a random swap
         std::vector<Node> new_solution = current_solution;
-        int index1 = rand() % this->node_size;
-        int index2 = rand() % this->node_size;
-        // TODO: opt method
-        std::swap(new_solution[index1], new_solution[index2]);
+        this->random_switch(new_solution);
 
         // Calculate the new solution's distance
         double new_distance = calculate_result(new_solution);

@@ -20,8 +20,10 @@ public:
     void calculate_distance_table();
     double get_distance_table(int, int);
 
+    // exchange methods
     void two_opt(std::vector<Node>& path);
     void three_opt(std::vector<Node>& path);
+    void random_switch(std::vector<Node>& path);
 };
 
 #endif // ALGO_HPP

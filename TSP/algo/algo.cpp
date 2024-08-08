@@ -114,3 +114,9 @@ void Algo::three_opt(std::vector<Node>& path) {
         }
     }
 }
+
+void Algo::random_switch(std::vector<Node>& path) {
+    int i = rand() % this->node_size;
+    int j = rand() % this->node_size;
+    std::swap(path[i], path[j]);
+}
