@@ -12,6 +12,15 @@
 
 # Algorithm
 
+## Stages
+
+- Initialization
+- Iteration
+    - Generation
+    - Evaluation
+    - Update
+- Result
+
 ## Genetic Algorithm (GA)
 
 ## Particle Swarm Optimization (PSO)
