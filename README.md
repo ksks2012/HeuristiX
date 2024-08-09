@@ -35,6 +35,15 @@
 
 ## Artificial Bee Colony (ABC)
 
+# TODO List
+
+- Different evaluate function for every problem
+- Config
+    - common config
+        - input
+        - iteration
+    - config that only for the algorithm
+
 # Ref
 
 http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/
