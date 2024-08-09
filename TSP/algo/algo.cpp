@@ -5,6 +5,15 @@ Algo::Algo() {
     ;
 }
 
+void Algo::set_data(std::vector<Node> &data) {
+    std::cout << "Setting data" << std::endl;
+    this->data = data;
+
+    // Set the node size
+    this->node_size = this->data.size();
+    std::cout << "this->node_size " << this->node_size << std::endl;
+}
+
 void Algo::calculate_distance_table() {
     std::cout << "Calculating distance table" << std::endl;
     this->distance.resize(this->data.size(), std::vector<double>(this->data.size()));

@@ -15,7 +15,6 @@ private:
 public:
     SA();
 
-    void set_data(std::vector<Node> &data);
     void run();
 };
 

@@ -5,15 +5,6 @@ SA::SA() {
         std::cout << "Simulated Annealing" << std::endl;
     }
 
-void SA::set_data(std::vector<Node> &data) {
-    std::cout << "Setting data" << std::endl;
-    this->data = data;
-
-    // Set the node size
-    this->node_size = this->data.size();
-    std::cout << "this->node_size " << this->node_size << std::endl;
-}
-
 void SA::run() {
     std::cout << "Running SA" << std::endl;
 

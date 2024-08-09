@@ -9,13 +9,16 @@ public:
     int node_size;
     std::vector<Node> data;
     std::vector<std::vector<double>> distance;
+
+    // TODO: function pointer to evaluate the solution in each problem
+    EvaluateFunctionPointer evaluate_solution;
 private:
     
 public:
     Algo();
+    void set_data(std::vector<Node> &);
     virtual void run() = 0;
-    virtual void set_data(std::vector<Node> &data) = 0;
-
+    
     // common functions
     void calculate_distance_table();
     double get_distance_table(int, int);

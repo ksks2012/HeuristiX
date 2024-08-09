@@ -2,16 +2,21 @@
 #define __HEADER_HPP__
 
 // standard libraries
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
-#include <sstream>
-#include <cmath>
 #include <algorithm>
+#include <cmath>
+#include <fstream>
+#include <iostream>
+#include <limits>
+#include <sstream>
+#include <string>
+#include <vector>
+
+#include "node.hpp"
 
 // algorithms
 
 using namespace std;
+
+typedef double (*EvaluateFunctionPointer)(std::vector<Node>&);
 
 #endif
