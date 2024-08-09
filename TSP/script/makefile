@@ -13,7 +13,7 @@ ALGO_SRC = $(SRCDIR)/algo/algo.cpp $(SRCDIR)/algo/SA/SA.cpp $(SRCDIR)/algo/tabu_
 UTILS_SRC = $(SRCDIR)/utils/utils.cpp
 
 # Define object files
-OBJS = $(MAIN_SRC:.cpp=.o) $(ALGO_SRC:.cpp=.o) $(UTILS_SRC:.cpp=.o) $(DATA_READER_OBJ)
+OBJS = $(MAIN_SRC:.cpp=.o) $(ALGO_SRC:.cpp=.o) $(UTILS_SRC:.cpp=.o)
 
 # Define the target binary
 TARGET = $(BINDIR)/tsp_solver
