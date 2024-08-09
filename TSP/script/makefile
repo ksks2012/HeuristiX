@@ -5,11 +5,11 @@ CXXFLAGS = -std=c++11 -Wall -O2 -g
 # Define directories
 SRCDIR = ..
 BINDIR = $(SRCDIR)/cmd
-INCDIR = $(SRCDIR)/header $(SRCDIR)/algo $(SRCDIR)/algo/SA $(SRCDIR)/utils $(SRCDIR)/utils/type
+INCDIR = $(SRCDIR)/header $(SRCDIR)/algo $(SRCDIR)/algo/SA $(SRCDIR)/algo/tabu_search $(SRCDIR)/utils $(SRCDIR)/utils/type
 
 # Define source files
 MAIN_SRC = $(SRCDIR)/main.cpp
-ALGO_SRC = $(SRCDIR)/algo/algo.cpp $(SRCDIR)/algo/SA/SA.cpp
+ALGO_SRC = $(SRCDIR)/algo/algo.cpp $(SRCDIR)/algo/SA/SA.cpp $(SRCDIR)/algo/tabu_search/tabu_search.cpp
 UTILS_SRC = $(SRCDIR)/utils/utils.cpp
 
 # Define object files

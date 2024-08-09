@@ -6,3 +6,4 @@
 
 make clean all
 ../cmd/tsp_solver  -algo SA -dataset ../dataset/pr76.tsp
+../cmd/tsp_solver  -algo TABU -dataset ../dataset/pr76.tsp

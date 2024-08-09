@@ -1,5 +1,6 @@
 #include "header.hpp"
 #include "SA.hpp"
+#include "tabu_search.hpp"
 #include "node.hpp"
 #include "utils.hpp"
 
@@ -33,13 +34,17 @@ int main(int argc, char* argv[]) {
     Algo *algo = nullptr;
     if (algorithm == "SA") {
         algo = new SA();
-        string path(dataset_path);
-        std::vector<Node> data = read_nodes(path);
-        algo->set_data(data);
+    } else if (algorithm == "TABU") {
+        algo = new TabuSearch();
     } else {
         std::cerr << "Unknown algorithm: " << algorithm << std::endl;
         return 1;
     }
+
+    // Read the dataset
+    string path(dataset_path);
+    std::vector<Node> data = read_nodes(path);
+    algo->set_data(data);
 
     // run algorithm
     algo->run();
