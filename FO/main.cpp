@@ -1,3 +1,4 @@
+#include "ga.hpp"
 #include "header.hpp"
 #include "pso.hpp"
 #include "utils.hpp"
@@ -40,6 +41,8 @@ int main(int argc, char* argv[]) {
     Algo *algo = nullptr;
     if (algorithm == "PSO") {
         algo = new PSO();
+    } else if (algorithm == "GA") {
+        algo = new GA();
     } else {
         cerr << "Unknown algorithm: " << algorithm << endl;
         return 1;

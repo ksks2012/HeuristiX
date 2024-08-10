@@ -6,6 +6,10 @@ Algo::Algo() {
     population_size = 0;
 }
 
+int Algo::random_int(int min, int max) {
+    return min + (rand() % (max - min + 1));
+}
+
 double Algo::random_double(double min, double max) {
     double r = (double)rand() / RAND_MAX;
     return min + (max - min) * r;

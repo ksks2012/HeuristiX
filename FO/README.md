@@ -1,4 +1,4 @@
-# function Optimization
+# Function Optimization
 
 # Command
 
@@ -6,6 +6,7 @@
 
 - algo
     - PSO
+    - GA
 - func
     - 1~n
 - dim: dimentions of function

@@ -18,6 +18,7 @@ public:
     virtual void run() = 0;
     virtual void evaluate() = 0;
 
+    int random_int(int, int);
     double random_double(double, double);
     void set_func_number(int);
 };

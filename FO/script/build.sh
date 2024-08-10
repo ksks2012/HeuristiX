@@ -9,3 +9,6 @@ make clean func
 
 make clean all
 ../cmd/fo_solver -algo PSO -func 1 -dim 100
+
+make clean all
+../cmd/fo_solver -algo GA -func 1 -dim 2
