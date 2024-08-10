@@ -3,12 +3,12 @@
 
 int main() {
     int i, j, k, n, m, func_num;
-    vector<double> f, x;
 
     m = 2;
     n = 10;
-    x.resize(m * n);
-    f.resize(m);
+    
+    vector<double> f(n);
+    vector<vector<double>> x(m, vector<double>(n));
 
     for (i = 0; i < 1; i++) {
         func_num = i + 1;
@@ -21,13 +21,13 @@ int main() {
         }
 
         for (k = 0; k < n; k++) {
-            fpt >> x[k];
+            fpt >> x[0][k];
         }
 
         fpt.close();
 
         for (j = 0; j < n; j++) {
-            x[1 * n + j] = 0.0;
+            x[1][j] = 0.0;
         }
 
         FOBenchmark *benchmark = new FOBenchmark();

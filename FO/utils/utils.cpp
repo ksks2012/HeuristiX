@@ -4,6 +4,35 @@ FOBenchmark::FOBenchmark() {
     ;
 }
 
+FOBenchmark::FOBenchmark(int dimentions) {
+    this->dimentions = dimentions;
+}
+
+void FOBenchmark::set_dimensions(int dimentions) {
+    this->dimentions = dimentions;
+}
+
+/**
+ * Sets the bounds for the given function number and dimension.
+ *
+ * @param func_num The function number.
+ * @param dimension The dimension.
+ */
+void FOBenchmark::set_bounds(int func_num, int dimension) {
+    // TODO: check if the bounds are effect by dimensions
+    switch (func_num) {
+        case 1:
+            upper_bound = vector<double>(dimension, 100.0);
+            lower_bound = vector<double>(dimension, -100.0);
+            cout << "Bounds set for function number: " << func_num << " with size " << upper_bound.size() << " " << lower_bound.size() << endl;
+            break;
+        // TODO: more cases to be added...
+        default:
+            cerr << "\nError: Cannot find function number: " << func_num << endl;;
+            break;
+    }
+}
+
 /**
  * @brief This function is used to evaluate the CEC17 test functions.
  * 
@@ -13,7 +42,7 @@ FOBenchmark::FOBenchmark() {
  * @param mx The number of vectors to be evaluated.
  * @param func_num The number of the test function to be evaluated.
  */
-void FOBenchmark::cec17_test_func(vector<double>& x, vector<double>& f, int nx, int mx, int func_num) {
+void FOBenchmark::cec17_test_func(const vector<vector<double>>& x, vector<double>& f, int nx, int mx, int func_num) {
     int cf_num = 10, i, j;
 
     if (ini_flag == 1) {
@@ -29,10 +58,8 @@ void FOBenchmark::cec17_test_func(vector<double>& x, vector<double>& f, int nx, 
         // reinitialize the data
         y.clear();
         z.clear();
-        x_bound.clear();
         y.resize(nx);
         z.resize(nx);
-        x_bound.resize(nx, 100.0);
 
         if (!(nx == 2 || nx == 10 || nx == 20 || nx == 30 || nx == 50 || nx == 100)) {
             cerr << "\nError: Test functions are only defined for D=2,10,20,30,50,100.\n";
@@ -46,7 +73,7 @@ void FOBenchmark::cec17_test_func(vector<double>& x, vector<double>& f, int nx, 
         file_name = "../dataset/CEC2017/input_data/M_" + to_string(func_num) + "_D" + to_string(nx) + ".txt";
         fpt.open(file_name);
         if (!fpt.is_open()) {
-            cerr << "\nError: Cannot open input file for reading: " << file_name << "\n";
+            cerr << "\nError: Cannot open input file for reading: " << file_name << endl;;
             return;
         }
 
@@ -67,7 +94,7 @@ void FOBenchmark::cec17_test_func(vector<double>& x, vector<double>& f, int nx, 
         file_name = "../dataset/CEC2017/input_data/shift_data_" + to_string(func_num) + ".txt";
         fpt.open(file_name);
         if (!fpt.is_open()) {
-            cerr << "\nError: Cannot open input file for reading: " << file_name << "\n";
+            cerr << "\nError: Cannot open input file for reading: " << file_name << endl;;
             return;
         }
 
@@ -95,7 +122,7 @@ void FOBenchmark::cec17_test_func(vector<double>& x, vector<double>& f, int nx, 
             file_name = "../dataset/CEC2017/input_data/shuffle_data_" + to_string(func_num) + "_D" + to_string(nx) + ".txt";
             fpt.open(file_name);
             if (!fpt.is_open()) {
-                cerr << "\nError: Cannot open input file for reading: " << file_name << "\n";
+                cerr << "\nError: Cannot open input file for reading: " << file_name << endl;;
                 return;
             }
             SS.resize(nx);
@@ -107,7 +134,7 @@ void FOBenchmark::cec17_test_func(vector<double>& x, vector<double>& f, int nx, 
             file_name = "../dataset/CEC2017/input_data/shuffle_data_" + to_string(func_num) + "_D" + to_string(nx) + ".txt";
             fpt.open(file_name);
             if (!fpt.is_open()) {
-                cerr << "\nError: Cannot open input file for reading: " << file_name << "\n";
+                cerr << "\nError: Cannot open input file for reading: " << file_name << endl;;
                 return;
             }
             SS.resize(nx * cf_num);
@@ -125,7 +152,7 @@ void FOBenchmark::cec17_test_func(vector<double>& x, vector<double>& f, int nx, 
     for (i = 0; i < mx; i++) {
         switch (func_num) {
             case 1:
-                this->bent_cigar_func(vector<double>(x.begin() + (i * nx), x.begin() + ((i + 1) * nx)), f[i], nx, OShift, M, 1, 1);
+                this->bent_cigar_func(x[i], f[i], nx, OShift, M, 1, 1);
                 f[i] += 100.0;
                 break;
             case 2:
@@ -139,8 +166,6 @@ void FOBenchmark::cec17_test_func(vector<double>& x, vector<double>& f, int nx, 
         }
     }
 }
-
-
 
 /**
  * @brief Shifts the elements of the input array by subtracting the corresponding elements of the shift array.

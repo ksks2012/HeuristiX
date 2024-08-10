@@ -21,6 +21,11 @@
     - Update
 - Result
 
+### Flow of Result
+
+- Table of Latex
+- Figure by gnuplot
+
 ## Genetic Algorithm (GA)
 
 ## Particle Swarm Optimization (PSO)
@@ -34,6 +39,11 @@
 ## Tabu Search
 
 ## Artificial Bee Colony (ABC)
+
+# Common Config
+
+- iteration (evaluation)
+- run time
 
 # TODO List
 

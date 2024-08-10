@@ -2,8 +2,13 @@
 #define UTILS_HPP
 
 #include "header.hpp"
+class Benchmark {
+public:
+    vector<double> upper_bound, lower_bound;
+    int dimentions;
+};
 
-class FOBenchmark {
+class FOBenchmark : public Benchmark {
 public:
     vector<double> OShift, M, y, z, x_bound;
     int ini_flag = 0, n_flag, func_flag;
@@ -18,8 +23,12 @@ private:
     void rotatefunc(vector<double>& , vector<double>& , int, vector<double>& );
 public:
     FOBenchmark();
+    FOBenchmark(int);
 
-    void cec17_test_func(vector<double>&, vector<double>&, int, int, int);
+    void set_bounds(int, int);
+    void set_dimensions(int);
+
+    void cec17_test_func(const vector<vector<double>>&, vector<double>&, int, int, int);
 };
 
 #define INF 1.0e99
