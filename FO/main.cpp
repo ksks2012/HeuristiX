@@ -3,30 +3,80 @@
 #include "pso.hpp"
 #include "utils.hpp"
 
-int main(int argc, char* argv[]) {
-    // check the number of arguments
-    if (argc != 7) {
-        cerr << "Usage: " << argv[0] << " -algo <algorithm> -dataset <path_to_dataset>" << endl;
-        return 1;
-    }
 
+/* print a description of all supported options */
+void usage(std::ostream &os, const std::string &path) {
+    /* take only the last portion of the path */
+    std::string basename = path.substr(path.find_last_of('/') + 1);
+
+    os << "usage: " << basename << " [OPTION]\n"
+        << "  -h, --help\t\t"
+        << "Print this help and exit.\n"
+        << "  -a, --algo=STRING\t"
+        << "Choose the algorithm to run.\n"
+        << "  -f, --func=STRING\t"
+        << "Choose the benchmark function number to run.\n"
+        << "  -d, --dim=STRING\t"
+        << "Choose the number of dimentions.\n";
+}
+
+int main(int argc, char* argv[]) {
     string algorithm;
     string function_number;
     string dimentions;
 
-    // parse the arguments
-    for (int i = 1; i < argc; i += 2) {
-        string flag = argv[i];
-        if (flag == "-algo") {
-            algorithm = argv[i + 1];
-        } else if (flag == "-func") {
-            function_number = argv[i + 1];
-        } else if (flag == "-dim") {
-            dimentions = argv[i + 1];
-        } else {
-            cerr << "Unknown flag: " << flag << endl;
-            return 1;
+    bool help_flag = false;
+    int opt;
+
+    
+    /* no_argument: means that the option does not take an argument
+     * optional_argument: means that the option may or may not take an argument
+     * required_argument: means that the option requires an argument
+      */
+    struct option longopts[] = {
+        {"help", no_argument, nullptr, 'h'},
+        {"algo", required_argument, nullptr, 'a'},
+        {"func", required_argument, nullptr, 'f'},
+        {"dim", required_argument, nullptr, 'd'},
+        {0}
+    };
+
+    while (true) {
+        opt = getopt_long(argc, argv, "hf::m:", longopts, nullptr);
+
+        if (opt == -1) {
+            break;
         }
+
+        switch (opt) {
+            case 'h':
+                help_flag = true;
+                break;
+            case 'a':
+                algorithm = optarg;
+                break;
+            case 'f':
+                function_number = optarg;
+                break;
+            case 'd':
+                dimentions = optarg;
+                break;
+            case '?':
+                usage(std::cerr, argv[0]);
+                return 1;
+            default:
+                break;
+        }
+    }
+
+    if (help_flag) {
+        usage(cout, argv[0]);
+        return 0;
+    }
+
+    if(algorithm.empty() || function_number.empty() || dimentions.empty()) {
+        cerr << "Missing arguments" << endl;
+        return 1;
     }
 
     // output the arguments

@@ -7,6 +7,7 @@
 #include <climits>
 #include <cmath>
 #include <cstdlib>
+#include <cstring>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -15,6 +16,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+
+#include <getopt.h>
 
 // algorithms
 
