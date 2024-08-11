@@ -10,8 +10,10 @@ void usage(std::ostream &os, const std::string &path) {
     std::string basename = path.substr(path.find_last_of('/') + 1);
 
     os << "usage: " << basename << " [OPTION]\n"
+        << "[Help options]:\n"
         << "  -h, --help\t\t"
         << "Print this help and exit.\n"
+        << "[Necessary paramters]:\n"
         << "  -a, --algo=STRING\t"
         << "Choose the algorithm to run.\n"
         << "  -f, --func=STRING\t"
@@ -75,7 +77,8 @@ int main(int argc, char* argv[]) {
     }
 
     if(algorithm.empty() || function_number.empty() || dimentions.empty()) {
-        cerr << "Missing arguments" << endl;
+        usage(cout, argv[0]);
+        cerr << "Error: Missing arguments" << endl;
         return 1;
     }
 
