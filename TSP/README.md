@@ -12,23 +12,23 @@
 ## Examples
 
 ```
-./tsp_solver -algo <algorithm> -dataset <path_to_dataset>
+./tsp_solver --algo=<algorithm> --dataset=<path_to_dataset>
 ```
 
 ### Simulated annealing (SA)
 
 ```
-/tsp_solver  -algo SA -dataset ../dataset/pr76.tsp
+/tsp_solver  --algo=SA --dataset=../dataset/pr76.tsp
 ```
 
 ```
-/tsp_solver  -algo SA -dataset ../dataset/eil51.tsp
+/tsp_solver  --algo=SA --dataset=../dataset/eil51.tsp
 ```
 
 ### TABU
 
 ```
-/tsp_solver  -algo TABU -dataset ../dataset/pr76.tsp
+/tsp_solver  --algo=TABU --dataset=../dataset/pr76.tsp
 ```
 
 # Solution
@@ -42,3 +42,7 @@
 ## Simple
 
 - index
+
+# Ref
+
+http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/
