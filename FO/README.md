@@ -21,7 +21,11 @@
 ## Example
 
 ```
-./fo_solver -algo <algorithm> -func <function number> -dim <dimentions>
+./fo_solver --help
+```
+
+```
+./fo_solver --algo=<algorithm> --func=<function number> --dim=<dimentions>
 ```
 
 ### PSO
