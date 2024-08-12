@@ -26,6 +26,7 @@ private:
 
 public:
     PSO();
+    PSO(YAML::Node);
     void intialize_data() override;
     void run() override;
     void evaluate() override;

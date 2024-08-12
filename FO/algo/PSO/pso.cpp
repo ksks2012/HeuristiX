@@ -3,7 +3,7 @@
 PSO::PSO() {
     this->benchmark = new FOBenchmark();
 
-    // TODO: config setting
+    // TODO: config_node setting
     this->population_size = 50;
     this->iteration = 20000;
 
@@ -14,6 +14,62 @@ PSO::PSO() {
     // for vmax
     this->vrate = 0.2;
 }
+
+PSO::PSO(YAML::Node config_node) {
+    try {
+        this->benchmark = new FOBenchmark();
+
+        YAML::Node global_config_node = config_node["Global"];
+
+        // Set population size from config_node
+        if (global_config_node["population_size"]) {
+            this->population_size = global_config_node["population_size"].as<int>();
+        } else {
+            throw std::runtime_error("Population size not specified in config_node.");
+        }
+
+        // Set iteration from config_node
+        if (global_config_node["iteration"]) {
+            this->iteration = global_config_node["iteration"].as<int>();
+        } else {
+            throw std::runtime_error("Iteration not specified in config_node.");
+        }
+
+        YAML::Node pso_config_node = config_node["PSO"];
+
+        // Set w from config_node
+        if (pso_config_node["w"]) {
+            this->w = pso_config_node["w"].as<double>();
+        } else {
+            throw std::runtime_error("w not specified in config_node.");
+        }
+
+        // Set c1 from config_node
+        if (pso_config_node["c1"]) {
+            this->c1 = pso_config_node["c1"].as<double>();
+        } else {
+            throw std::runtime_error("c1 not specified in config_node.");
+        }
+
+        // Set c2 from config_node
+        if (pso_config_node["c2"]) {
+            this->c2 = pso_config_node["c2"].as<double>();
+        } else {
+            throw std::runtime_error("c2 not specified in config_node.");
+        }
+
+        // Set vrate from config_node
+        if (pso_config_node["vrate"]) {
+            this->vrate = pso_config_node["vrate"].as<double>();
+        } else {
+            throw std::runtime_error("vrate not specified in config_node.");
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        exit(1);
+    }
+}
+
 
 /**
  * Initializes the data for the Particle Swarm Optimization (PSO) algorithm.

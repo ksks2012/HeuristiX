@@ -1,0 +1,11 @@
+Global:
+  iteration: 20000
+  population_size: 50
+GA:
+  crossover_rate: 0.99
+  mutation_rate: 0.01
+PSO:
+  w: 0.75
+  c1: 1.5
+  c2: 1.5
+  vrate: 0.2

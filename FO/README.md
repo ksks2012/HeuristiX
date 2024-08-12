@@ -17,6 +17,7 @@
     - 50
     - 100
     - NOTE: hf01,hf02,hf03,hf04,hf05,hf06,cf07&cf08 are NOT defined for D=2
+- conf: path of config file (in yaml format)
 
 ## Example
 
@@ -25,13 +26,13 @@
 ```
 
 ```
-./fo_solver --algo=<algorithm> --func=<function number> --dim=<dimentions>
+./fo_solver --algo=<algorithm> --func=<function number> --dim=<dimentions> --conf=<config_path>
 ```
 
 ### PSO
 
 ```
-./fo_solver -algo PSO -func 1 -dim 2
+./fo_solver --algo=PSO --func=1 --dim=100 --conf=../etc/config.yml
 ```
 
 # Ref

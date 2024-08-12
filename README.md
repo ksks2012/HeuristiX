@@ -45,6 +45,11 @@
 - iteration (evaluation)
 - run time
 
+# File Config
+
+- example in **/etc/config.yml
+- using yaml-cpp for parser
+
 # TODO List
 
 - Different evaluate function for every problem
@@ -56,4 +61,4 @@
 
 # Ref
 
-http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/
+https://github.com/jbeder/yaml-cpp

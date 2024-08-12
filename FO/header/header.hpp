@@ -19,6 +19,8 @@
 
 #include <getopt.h>
 
+#include "yaml-cpp/yaml.h"
+
 // algorithms
 
 using namespace std;

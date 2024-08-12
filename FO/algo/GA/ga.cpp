@@ -10,6 +10,47 @@ GA::GA() {
     mutation_rate = 0.01;
 }
 
+GA::GA(YAML::Node config_node) {
+    try {
+        this->benchmark = new FOBenchmark();
+
+        YAML::Node global_config_node = config_node["Global"];
+
+        // Set population size from config_node
+        if (global_config_node["population_size"]) {
+            this->population_size = global_config_node["population_size"].as<int>();
+        } else {
+            throw std::runtime_error("Population size not specified in config_node.");
+        }
+
+        // Set iteration from config_node
+        if (global_config_node["iteration"]) {
+            this->iteration = global_config_node["iteration"].as<int>();
+        } else {
+            throw std::runtime_error("Iteration not specified in config_node.");
+        }
+
+        YAML::Node ga_config_node = config_node["GA"];
+
+        // Set crossover_rate from config_node
+        if (ga_config_node["crossover_rate"]) {
+            this->crossover_rate = ga_config_node["crossover_rate"].as<double>();
+        } else {
+            throw std::runtime_error("crossover_rate not specified in config_node.");
+        }
+
+        // Set c1 from config_node
+        if (ga_config_node["mutation_rate"]) {
+            this->mutation_rate = ga_config_node["mutation_rate"].as<double>();
+        } else {
+            throw std::runtime_error("mutation_rate not specified in config_node.");
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        exit(1);
+    }
+}
+
 /**
  * Initializes the population for the Genetic Algorithm.
  * Randomly generates individuals within the specified bounds for each dimension.

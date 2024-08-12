@@ -19,13 +19,16 @@ void usage(std::ostream &os, const std::string &path) {
         << "  -f, --func=STRING\t"
         << "Choose the benchmark function number to run.\n"
         << "  -d, --dim=STRING\t"
-        << "Choose the number of dimentions.\n";
+        << "Choose the number of dimentions.\n"
+        << "  -c, --conf=STRING\t"
+        << "Choose the config file.\n";
 }
 
 int main(int argc, char* argv[]) {
     string algorithm;
     string function_number;
     string dimentions;
+    string config_file;
 
     bool help_flag = false;
     int opt;
@@ -40,6 +43,7 @@ int main(int argc, char* argv[]) {
         {"algo", required_argument, nullptr, 'a'},
         {"func", required_argument, nullptr, 'f'},
         {"dim", required_argument, nullptr, 'd'},
+        {"conf", required_argument, nullptr, 'c'},
         {0}
     };
 
@@ -63,6 +67,9 @@ int main(int argc, char* argv[]) {
             case 'd':
                 dimentions = optarg;
                 break;
+            case 'c':
+                config_file = optarg;
+                break;
             case '?':
                 usage(std::cerr, argv[0]);
                 return 1;
@@ -76,9 +83,17 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    if(algorithm.empty() || function_number.empty() || dimentions.empty()) {
+    if(config_file.empty() || algorithm.empty() || function_number.empty() || dimentions.empty()) {
         usage(cout, argv[0]);
         cerr << "Error: Missing arguments" << endl;
+        return 1;
+    }
+
+    YAML::Node config_node;
+    try {
+         config_node = YAML::LoadFile(config_file);
+    } catch (const std::invalid_argument &e) {
+        cerr << "Error: Missing config file" << endl;
         return 1;
     }
 
@@ -93,9 +108,9 @@ int main(int argc, char* argv[]) {
 
     Algo *algo = nullptr;
     if (algorithm == "PSO") {
-        algo = new PSO();
+        algo = new PSO(config_node);
     } else if (algorithm == "GA") {
-        algo = new GA();
+        algo = new GA(config_node);
     } else {
         cerr << "Unknown algorithm: " << algorithm << endl;
         return 1;

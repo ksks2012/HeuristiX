@@ -22,6 +22,7 @@ FUNC_TARGET = $(BINDIR)/benchmark
 
 # Define include directories
 INCLUDES = $(foreach d, $(INCDIR), -I$d)
+YAML_INCLUDES = -I/usr/local/include -L/usr/local/lib -lyaml-cpp
 
 # Rules
 all: $(TARGET)
@@ -29,13 +30,13 @@ all: $(TARGET)
 func: $(FUNC_TARGET)
 
 $(FUNC_TARGET): $(FUNC_OBJS)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^ $(YAML_INCLUDES)
 
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^ $(YAML_INCLUDES)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@ $(YAML_INCLUDES)
 
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET) $(SRCDIR)/*.o
