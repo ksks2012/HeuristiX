@@ -43,11 +43,13 @@
 ### Standard ABC Update Formula
 
 - For Employed and Onlooker Bees
+
 $$
 v_{ij} = x_{ij} + \phi_{ij} \times (x_{ij} - x_{kj})
 $$
 
 - For Scout Bees
+
 $$
 x_{ij} = x_{j}^{\text{min}} + \text{rand}(0, 1) \times (x_{j}^{\text{max}} - x_{j}^{\text{min}})
 $$
