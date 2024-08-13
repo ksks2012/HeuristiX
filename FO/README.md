@@ -34,6 +34,12 @@
 ```
 ./fo_solver --algo=PSO --func=1 --dim=100 --conf=../etc/config.yml
 ```
+# TODO List
+
+- Diffenet fumula for ABC
+    - [ ] Adaptive ABC Update Formula
+    - [ ] ABC with Differential Mutation
+    - [ ] Hybrid ABC Update Formula
 
 # Ref
 
