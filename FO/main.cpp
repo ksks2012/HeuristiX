@@ -1,3 +1,4 @@
+#include "abc.hpp"
 #include "ga.hpp"
 #include "header.hpp"
 #include "pso.hpp"
@@ -111,6 +112,8 @@ int main(int argc, char* argv[]) {
         algo = new PSO(config_node);
     } else if (algorithm == "GA") {
         algo = new GA(config_node);
+    } else if (algorithm == "ABC") {
+        algo = new ABC(config_node);
     } else {
         cerr << "Unknown algorithm: " << algorithm << endl;
         return 1;

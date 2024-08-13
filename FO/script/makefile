@@ -5,12 +5,14 @@ CXXFLAGS = -std=c++11 -Wall -O2 -g
 # Directories
 SRCDIR = ..
 BINDIR = $(SRCDIR)/cmd
-INCDIR = $(SRCDIR)/header $(SRCDIR)/algo $(SRCDIR)/algo/PSO $(SRCDIR)/algo/GA $(SRCDIR)/utils
+INCDIR = $(SRCDIR)/header $(SRCDIR)/algo $(SRCDIR)/algo/PSO $(SRCDIR)/algo/GA $(SRCDIR)/algo/ABC $(SRCDIR)/utils
+# INCDIR = $(SRCDIR)/header $(SRCDIR)/algo $(SRCDIR)/algo/PSO $(SRCDIR)/algo/GA $(SRCDIR)/utils
 
 # Files
 MAIN_SRC = $(SRCDIR)/main.cpp
 FUNC_SRC = $(SRCDIR)/benchmark.cpp
-ALGO_SRC = $(SRCDIR)/algo/algo.cpp $(SRCDIR)/algo/PSO/pso.cpp $(SRCDIR)/algo/GA/ga.cpp
+ALGO_SRC = $(SRCDIR)/algo/algo.cpp $(SRCDIR)/algo/PSO/pso.cpp $(SRCDIR)/algo/GA/ga.cpp $(SRCDIR)/algo/ABC/abc.cpp
+# ALGO_SRC = $(SRCDIR)/algo/algo.cpp $(SRCDIR)/algo/PSO/pso.cpp $(SRCDIR)/algo/GA/ga.cpp
 UTILS_SRC = $(SRCDIR)/utils/utils.cpp
 
 OBJS = $(MAIN_SRC:.cpp=.o) $(ALGO_SRC:.cpp=.o) $(UTILS_SRC:.cpp=.o)
