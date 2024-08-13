@@ -6,18 +6,17 @@
 class PSO : public Algo {
 public:
     // data for algorithm
-    std::vector<std::vector<double>> population;
-    std::vector<std::vector<double>> velocity;
-    std::vector<double> fitness;
-    std::vector<double> pbest;
-    std::vector<double> gbest;
-    std::vector<double> pbest_fitness;
+    vector<vector<double>> velocity;
+    vector<double> fitness;
+    vector<double> pbest;
+    vector<double> gbest;
+    vector<double> pbest_fitness;
     double gbest_fitness;
 
     // parameters for algorithm
     double w, c1, c2;
     double vrate;
-    std::vector<double> vmax, vmin;
+    vector<double> vmax, vmin;
 
 private:
     void initialize_particles();
@@ -31,9 +30,7 @@ public:
     void run() override;
     void evaluate() override;
 
-    void show_population();
     void show_velocity();
-    void show_gbest();
 };
 
 #endif // PSO_HPP

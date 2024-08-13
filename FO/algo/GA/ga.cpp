@@ -164,19 +164,3 @@ void GA::run() {
         cout << "Iteration " << i + 1 << ": Best Fitness = " << gbest_fitness << endl;
     }
 }
-
-void GA::show_population() {
-    for (int i = 0; i < population_size; i++) {
-        for (int j = 0; j < this->benchmark->dimentions; j++) {
-            std::cout << population[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-}
-
-void GA::show_gbest() {
-    for (int i = 0; i < this->benchmark->dimentions; i++) {
-        std::cout << gbest[i] << " ";
-    }
-    std::cout << std::endl;
-}

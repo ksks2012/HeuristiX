@@ -192,15 +192,6 @@ void PSO::evaluate() {
     this->benchmark->cec17_test_func(population, this->fitness, this->benchmark->dimentions, this->population_size, this->func_number);
 }
 
-void PSO::show_population() {
-    for (int i = 0; i < this->population_size; i++) {
-        for (int j = 0; j < this->benchmark->dimentions; j++) {
-            cout << this->population[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
-
 void PSO::show_velocity() {
     for (int i = 0; i < this->population_size; i++) {
         for (int j = 0; j < this->benchmark->dimentions; j++) {
@@ -208,11 +199,4 @@ void PSO::show_velocity() {
         }
         cout << endl;
     }
-}
-
-void PSO::show_gbest() {
-    for (int i = 0; i < this->benchmark->dimentions; i++) {
-        cout << this->gbest[i] << " ";
-    }
-    cout << endl;
 }
