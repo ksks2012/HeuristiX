@@ -88,8 +88,15 @@ void ABC::initialize_particles() {
     this->gbest_fitness = this->fitness[best_index];
 }
 
+/**
+ * Calculates the honey source value based on the given input value.
+ *
+ * @param value The input value.
+ * @return The calculated honey source value.
+ */
 double ABC::cal_honey_source(double value) {
     double honey_source = 0.0;
+    // NOTE: The positive and negative distribution of values ​​is not a normal distribution
     if (value >= 0) {
         honey_source = 1.0 / (1.0 + value);
     } else {
