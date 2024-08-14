@@ -188,10 +188,6 @@ void PSO::run() {
     }
 }
 
-void PSO::evaluate() {
-    this->benchmark->cec17_test_func(population, this->fitness, this->benchmark->dimentions, this->population_size, this->func_number);
-}
-
 void PSO::show_velocity() {
     for (int i = 0; i < this->population_size; i++) {
         for (int j = 0; j < this->benchmark->dimentions; j++) {

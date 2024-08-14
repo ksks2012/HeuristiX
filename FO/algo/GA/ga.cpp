@@ -116,10 +116,6 @@ void GA::crossover() {
     // }
 }
 
-void GA::evaluate() {
-    this->benchmark->cec17_test_func(population, this->fitness, this->benchmark->dimentions, this->population_size, this->func_number);
-}
-
 /**
  * Performs mutation on the population.
  * Randomly selects individuals from the population and mutates their genes.

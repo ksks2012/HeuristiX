@@ -28,7 +28,6 @@ public:
     PSO(YAML::Node);
     void intialize_data() override;
     void run() override;
-    void evaluate() override;
 
     void show_velocity();
 };

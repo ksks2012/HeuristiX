@@ -22,7 +22,6 @@ public:
     GA(YAML::Node);
     void intialize_data() override;
     void run() override;
-    void evaluate() override;
 };
 
 #endif // GA_HPP
