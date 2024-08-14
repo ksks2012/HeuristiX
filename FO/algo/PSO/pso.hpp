@@ -7,11 +7,6 @@ class PSO : public Algo {
 public:
     // data for algorithm
     vector<vector<double>> velocity;
-    vector<double> fitness;
-    vector<double> pbest;
-    vector<double> gbest;
-    vector<double> pbest_fitness;
-    double gbest_fitness;
 
     // parameters for algorithm
     double w, c1, c2;
@@ -28,6 +23,7 @@ public:
     PSO(YAML::Node);
     void intialize_data() override;
     void run() override;
+    // void evaluate();
 
     void show_velocity();
 };
