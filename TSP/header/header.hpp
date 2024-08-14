@@ -4,6 +4,7 @@
 // standard libraries
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <limits>
@@ -11,6 +12,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+
+#include <getopt.h>
 
 #include "node.hpp"
 

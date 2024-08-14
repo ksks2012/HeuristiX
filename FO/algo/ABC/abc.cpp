@@ -3,7 +3,6 @@
 ABC::ABC() {
     this->benchmark = new FOBenchmark();
 
-    // TODO: config_node setting
     this->population_size = 50;
     this->iteration = 20000;
 
@@ -32,7 +31,6 @@ ABC::ABC(YAML::Node config_node) {
 
         YAML::Node abc_config_node = config_node["ABC"];
 
-        // TODO: args for ABC
         if (abc_config_node["limit_trail"]) {
             this->limit_trail = abc_config_node["limit_trail"].as<int>();
         } else {
@@ -88,8 +86,15 @@ void ABC::initialize_particles() {
     this->gbest_fitness = this->fitness[best_index];
 }
 
+/**
+ * Calculates the honey source value based on the given input value.
+ *
+ * @param value The input value.
+ * @return The calculated honey source value.
+ */
 double ABC::cal_honey_source(double value) {
     double honey_source = 0.0;
+    // NOTE: The positive and negative distribution of values ​​is not a normal distribution
     if (value >= 0) {
         honey_source = 1.0 / (1.0 + value);
     } else {
@@ -231,8 +236,4 @@ void ABC::run() {
         // Print current best fitness value
         cout << "Iteration " << i + 1 << ": Best Fitness = " << gbest_fitness << endl;
     }
-}
-
-void ABC::evaluate() {
-    this->benchmark->cec17_test_func(population, this->fitness, this->benchmark->dimentions, this->population_size, this->func_number);
 }

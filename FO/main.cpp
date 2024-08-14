@@ -1,5 +1,6 @@
 #include "abc.hpp"
 #include "ga.hpp"
+#include "gwo.hpp"
 #include "header.hpp"
 #include "pso.hpp"
 #include "utils.hpp"
@@ -114,6 +115,8 @@ int main(int argc, char* argv[]) {
         algo = new GA(config_node);
     } else if (algorithm == "ABC") {
         algo = new ABC(config_node);
+    } else if (algorithm == "GWO") {
+        algo = new GWO(config_node);
     } else {
         cerr << "Unknown algorithm: " << algorithm << endl;
         return 1;

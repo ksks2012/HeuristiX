@@ -58,3 +58,7 @@ void Algo::show_gbest() {
     }
     cout << endl;
 }
+
+void Algo::evaluate() {
+    this->benchmark->cec17_test_func(population, this->fitness, this->benchmark->dimentions, this->population_size, this->func_number);
+}
