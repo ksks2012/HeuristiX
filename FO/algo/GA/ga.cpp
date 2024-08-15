@@ -4,7 +4,7 @@ GA::GA() {
     this->benchmark = new FOBenchmark();
 
     this->population_size = 50;
-    this->iteration = 200000;
+    this->max_evaluation = 200000;
 
     crossover_rate = 0.99;
     mutation_rate = 0.01;
@@ -24,8 +24,8 @@ GA::GA(YAML::Node config_node) {
         }
 
         // Set iteration from config_node
-        if (global_config_node["iteration"]) {
-            this->iteration = global_config_node["iteration"].as<int>();
+        if (global_config_node["evaluation"]) {
+            this->max_evaluation = global_config_node["evaluation"].as<int>();
         } else {
             throw std::runtime_error("Iteration not specified in config_node.");
         }
@@ -142,21 +142,5 @@ void GA::update_global_best() {
     if (this->fitness[best_index] < this->gbest_fitness) {
         this->gbest = this->population[best_index];
         this->gbest_fitness = this->fitness[best_index];
-    }
-}
-
-void GA::run() {
-
-    intialize_data();
-
-    initialize_population();
-
-    for (int i = 0; i < iteration; i++) {
-        update_population();
-
-        update_global_best();
-    
-        // Print current best fitness value
-        cout << "Iteration " << i + 1 << ": Best Fitness = " << gbest_fitness << endl;
     }
 }

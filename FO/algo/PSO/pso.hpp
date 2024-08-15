@@ -14,15 +14,14 @@ public:
     vector<double> vmax, vmin;
 
 private:
-    void initialize_particles();
-    void update_particles();
-    void update_global_best();
+    void initialize_population() override;
+    void update_population() override;
+    void update_global_best() override;
 
 public:
     PSO();
     PSO(YAML::Node);
     void intialize_data() override;
-    void run() override;
 
     void show_velocity();
 };

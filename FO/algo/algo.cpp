@@ -61,4 +61,24 @@ void Algo::show_gbest() {
 
 void Algo::evaluate() {
     this->benchmark->cec17_test_func(population, this->fitness, this->benchmark->dimentions, this->population_size, this->func_number);
+    this->evaluation_count += this->population_size;
+}
+
+void Algo::run() {
+    std::cout << scientific << setprecision(8);
+
+    intialize_data();
+
+    initialize_population();
+
+    while(evaluation_count < max_evaluation) {
+        update_population();
+
+        update_global_best();
+        
+        // Print best fitness value
+        //cout << "Iteration " << evaluation_count + 1 << ": Best Fitness = " << gbest_fitness << endl;
+    }
+    // Print best fitness value
+    cout << "Iteration " << evaluation_count + 1 << ": Best Fitness = " << gbest_fitness << endl;
 }

@@ -1,5 +1,5 @@
 Global:
-  iteration: 500000
+  evaluation: 50000
   population_size: 50
 GA:
   crossover_rate: 0.99

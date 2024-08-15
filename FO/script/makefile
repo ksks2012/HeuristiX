@@ -39,6 +39,6 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@ $(YAML_INCLUDES)
 
 clean:
-	rm -rf $(BUILD_DIR) $(TARGET) $(SRCDIR)/*.o
-
+# rm -rf $(BUILD_DIR) $(TARGET) $(SRCDIR)/*.o
+	rm  -rf $(BUILD_DIR) $(TARGET) $(foreach d, $(INCDIR), $(d)/*.o) $(SRCDIR)/*.o
 .PHONY: all clean

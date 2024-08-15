@@ -17,14 +17,14 @@ private:
 public:
 
 private:
-    void initialize_particles();
-    void update_particles();
-    void update_global_best();
+    void initialize_population() override;
+    void update_population() override;
+    void update_global_best() override;
 
     void encircling_prey();
     void hunting();
 
-    void update_weights(int);
+    void update_weights();
     inline double cal_A();
     inline double cal_C();
 
@@ -32,7 +32,6 @@ public:
     GWO();
     GWO(YAML::Node);
     void intialize_data() override;
-    void run() override;
 };
 
 #endif // GWO_HPP

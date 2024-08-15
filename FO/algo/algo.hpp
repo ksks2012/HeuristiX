@@ -17,14 +17,20 @@ public:
 
 
     int population_size;
-    int iteration;
+    int max_evaluation;
     int func_number;
+
+    int evaluation_count;
 private:    
 public:
     Algo();
+    void run();
+
     virtual void intialize_data() = 0;
-    virtual void run() = 0;
-    
+    virtual void initialize_population() = 0;
+    virtual void update_population() = 0;
+    virtual void update_global_best() = 0;
+
     int random_int(int, int);
     double random_double(double, double);
     int RWS();

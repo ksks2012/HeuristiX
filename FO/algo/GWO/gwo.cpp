@@ -5,7 +5,7 @@ GWO::GWO() {
     this->benchmark = new FOBenchmark();
 
     this->population_size = 50;
-    this->iteration = 20000;
+    this->max_evaluation = 20000;
 
     a = 2.0;
     c = 2.0;
@@ -24,9 +24,9 @@ GWO::GWO(YAML::Node config_node) {
             throw std::runtime_error("Population size not specified in config_node.");
         }
 
-        // Set iteration from config_node
-        if (global_config_node["iteration"]) {
-            this->iteration = global_config_node["iteration"].as<int>();
+        // Set max_evaluation from config_node
+        if (global_config_node["evaluation"]) {
+            this->max_evaluation = global_config_node["evaluation"].as<int>();
         } else {
             throw std::runtime_error("Iteration not specified in config_node.");
         }
@@ -69,7 +69,7 @@ void GWO::intialize_data() {
     delta_index = 0;
 }
 
-void GWO::initialize_particles() {
+void GWO::initialize_population() {
     // Initialize population
     for (int i = 0; i < this->population_size; i++) {
         vector<double> particle(this->benchmark->dimentions);
@@ -114,9 +114,6 @@ inline double GWO::cal_C() {
 
 void GWO::encircling_prey() {
     for (int i = 0; i < this->population_size; i++) {
-        double A = a * (2 * random_double(0, 1) - 1);
-        double C = c * random_double(0, 1);
-
         // D = ∣C⋅Xp​(t) − X(t)∣
         vector<double> D(this->benchmark->dimentions);
         for (int j = 0; j < this->benchmark->dimentions; j++) {
@@ -133,9 +130,6 @@ void GWO::encircling_prey() {
 void GWO::hunting() {
     // X_(t+1) = 1/3⋅​(Xα​ + Xβ​ + Xδ​)
     for (int i = 0; i < this->population_size; i++) {
-        double A = a * (2 * random_double(0, 1) - 1);
-        double C = c * random_double(0, 1);
-
         // D = ∣C⋅Xp​(t) − X(t)∣
         // X(t+1) = Xp​(t) − A⋅D
         for (int j = 0; j < this->benchmark->dimentions; j++) {
@@ -148,7 +142,7 @@ void GWO::hunting() {
     }
 }
 
-void GWO::update_particles() {
+void GWO::update_population() {
     encircling_prey();
     hunting();    
 
@@ -175,32 +169,11 @@ void GWO::update_global_best() {
         this->gbest = this->population[this->alpha_index];
         this->gbest_fitness = this->fitness[this->alpha_index];
     }
+
+    update_weights();
 }
 
-void GWO::update_weights(int iter) {
+void GWO::update_weights() {
     // a decreases linearly from 2 to 0
-    a = 2 - iter * (2 / (double)this->iteration);
-}
-
-void GWO::run() {
-    cout << "GWO" << endl;
-    
-    std::cout << scientific << setprecision(8);
-
-    // Initialize particles
-    initialize_particles();
-
-    // Run GWO iterations
-    for (int i = 0; i < this->iteration; i++) {
-        // Update particle positions and velocities
-        update_particles();
-
-        // Update global best position
-        update_global_best();
-
-        update_weights(i);
-
-        // Print current best fitness value
-        cout << "Iteration " << i + 1 << ": Best Fitness = " << gbest_fitness << endl;
-    }
+    a = 2 - evaluation_count * (2 / (double)this->max_evaluation);
 }

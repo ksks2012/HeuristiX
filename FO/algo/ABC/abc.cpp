@@ -4,7 +4,7 @@ ABC::ABC() {
     this->benchmark = new FOBenchmark();
 
     this->population_size = 50;
-    this->iteration = 20000;
+    this->max_evaluation = 20000;
 
     limit_trail = 100;
 }
@@ -23,8 +23,8 @@ ABC::ABC(YAML::Node config_node) {
         }
 
         // Set iteration from config_node
-        if (global_config_node["iteration"]) {
-            this->iteration = global_config_node["iteration"].as<int>();
+        if (global_config_node["evaluation"]) {
+            this->max_evaluation = global_config_node["evaluation"].as<int>();
         } else {
             throw std::runtime_error("Iteration not specified in config_node.");
         }
@@ -63,7 +63,7 @@ void ABC::intialize_data() {
 /**
  * Initializes the particles for the Artificial Bee Colony (ABC) algorithm.
  */
-void ABC::initialize_particles() {
+void ABC::initialize_population() {
     // Initialize population
     for (int i = 0; i < this->population_size; i++) {
         vector<double> particle(this->benchmark->dimentions);
@@ -195,7 +195,7 @@ void ABC::scout_bees() {
 /**
  * Updates the particles in the ABC algorithm.
  */
-void ABC::update_particles() {
+void ABC::update_population() {
     // Employed Bees Phase
     employed_bees();
 
@@ -214,26 +214,5 @@ void ABC::update_global_best() {
     if (this->fitness[best_index] < this->gbest_fitness) {
         this->gbest = this->population[best_index];
         this->gbest_fitness = this->fitness[best_index];
-    }
-}
-
-void ABC::run() {
-    cout << "ABC" << endl;
-    
-    std::cout << scientific << setprecision(8);
-
-    // Initialize particles
-    initialize_particles();
-
-    // Run ABC iterations
-    for (int i = 0; i < this->iteration; i++) {
-        // Update particle positions and velocities
-        update_particles();
-
-        // Update global best position
-        update_global_best();
-
-        // Print current best fitness value
-        cout << "Iteration " << i + 1 << ": Best Fitness = " << gbest_fitness << endl;
     }
 }

@@ -15,9 +15,9 @@ public:
     int limit_trail;
 
 private:
-    void initialize_particles();
-    void update_particles();
-    void update_global_best();
+    void initialize_population() override;
+    void update_population() override;
+    void update_global_best() override;
 
     void employed_bees();
     void onlooker_bees();
@@ -32,6 +32,5 @@ public:
     ABC();
     ABC(YAML::Node);
     void intialize_data() override;
-    void run() override;
 };
 #endif // ABC_HPP

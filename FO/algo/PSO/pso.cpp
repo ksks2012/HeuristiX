@@ -5,7 +5,7 @@ PSO::PSO() {
 
     // TODO: config_node setting
     this->population_size = 50;
-    this->iteration = 20000;
+    this->max_evaluation = 20000;
 
     // NOTE: w from w_max to w_min by iteration
     this->w = 0.75;
@@ -29,8 +29,8 @@ PSO::PSO(YAML::Node config_node) {
         }
 
         // Set iteration from config_node
-        if (global_config_node["iteration"]) {
-            this->iteration = global_config_node["iteration"].as<int>();
+        if (global_config_node["evaluation"]) {
+            this->max_evaluation = global_config_node["evaluation"].as<int>();
         } else {
             throw std::runtime_error("Iteration not specified in config_node.");
         }
@@ -76,13 +76,13 @@ PSO::PSO(YAML::Node config_node) {
  */
 void PSO::intialize_data() {
     population = vector<vector<double>>(this->population_size, vector<double>(this->benchmark->dimentions));
-    velocity = vector<vector<double>>(this->population_size, vector<double>(this->benchmark->dimentions));
     fitness = vector<double>(this->population_size);
     pbest = vector<double>(this->benchmark->dimentions);
     gbest = vector<double>(this->benchmark->dimentions);
     pbest_fitness = vector<double>(this->population_size);
     gbest_fitness = INT_MAX;
 
+    velocity = vector<vector<double>>(this->population_size, vector<double>(this->benchmark->dimentions));
     vmax = vector<double>(this->benchmark->dimentions, 0);
     vmin = vector<double>(this->benchmark->dimentions, 0);
 }
@@ -95,7 +95,7 @@ void PSO::intialize_data() {
  * their fitness using the benchmark function. The personal best and global best are also initialized
  * based on the initial population.
  */
-void PSO::initialize_particles() {
+void PSO::initialize_population() {
     // Initialize population
     for (int i = 0; i < this->population_size; i++) {
         vector<double> particle(this->benchmark->dimentions);
@@ -132,7 +132,7 @@ void PSO::initialize_particles() {
 /**
  * Updates the particles in the PSO algorithm.
  */
-void PSO::update_particles() {
+void PSO::update_population() {
     // Update particle positions based on velocity
     for (int i = 0; i < this->population_size; i++) {
         for (int j = 0; j < this->benchmark->dimentions; j++) {
@@ -164,27 +164,6 @@ void PSO::update_global_best() {
     if (this->fitness[best_index] < this->gbest_fitness) {
         this->gbest = this->population[best_index];
         this->gbest_fitness = this->fitness[best_index];
-    }
-}
-
-void PSO::run() {
-    cout << "PSO" << endl;
-    
-    std::cout << scientific << setprecision(8);
-
-    // Initialize particles
-    initialize_particles();
-
-    // Run PSO iterations
-    for (int i = 0; i < this->iteration; i++) {
-        // Update particle positions and velocities
-        update_particles();
-
-        // Update global best position
-        update_global_best();
-
-        // Print current best fitness value
-        cout << "Iteration " << i + 1 << ": Best Fitness = " << gbest_fitness << endl;
     }
 }
 
