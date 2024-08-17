@@ -4,6 +4,7 @@
 #include "header.hpp"
 #include "pso.hpp"
 #include "utils.hpp"
+#include "woa.hpp"
 
 
 /* print a description of all supported options */
@@ -117,6 +118,8 @@ int main(int argc, char* argv[]) {
         algo = new ABC(config_node);
     } else if (algorithm == "GWO") {
         algo = new GWO(config_node);
+    } else if (algorithm == "WOA") {
+        algo = new WOA(config_node);
     } else {
         cerr << "Unknown algorithm: " << algorithm << endl;
         return 1;

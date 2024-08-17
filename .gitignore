@@ -2,6 +2,8 @@
 
 **/var/**
 **/cmd/**
+**/dataset/**
+**/build/**
+**/test_code/**
 
 **/**.o
-**/**.txt

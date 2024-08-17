@@ -4,11 +4,13 @@
 # Author: ksks2012
 # Version: 1.0
 
-# Check Benchmark
-make clean func
-../cmd/benchmark
+mkdir -p ../build
+cd ../build
+cmake ..
+make
 
-make clean all
+# Check Benchmark
+../cmd/benchmark
 
 # PSO
 ../cmd/fo_solver --algo=PSO --func=1 --dim=2 --conf=../etc/config.yml
@@ -21,3 +23,6 @@ make clean all
 
 # GWO
 ../cmd/fo_solver --algo=GWO --func=1 --dim=2 --conf=../etc/config.yml
+
+# WOA
+../cmd/fo_solver --algo=WOA --func=1 --dim=10 --conf=../etc/config.yml

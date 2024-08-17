@@ -1,5 +1,5 @@
 Global:
-  evaluation: 50000
+  evaluation: 5000000
   population_size: 50
 GA:
   crossover_rate: 0.99
@@ -12,5 +12,8 @@ PSO:
 ABC:
   limit_trail: 10
 GWO:
+  a: 2.0
+  c: 2.0
+WOA:
   a: 2.0
   c: 2.0

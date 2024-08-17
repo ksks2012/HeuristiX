@@ -15,6 +15,7 @@ include_directories(${CMAKE_SOURCE_DIR}/header
                     ${CMAKE_SOURCE_DIR}/algo/GA
                     ${CMAKE_SOURCE_DIR}/algo/ABC
                     ${CMAKE_SOURCE_DIR}/algo/GWO
+                    ${CMAKE_SOURCE_DIR}/algo/WOA
                     ${CMAKE_SOURCE_DIR}/utils
                     /usr/local/include)
 
@@ -25,7 +26,8 @@ set(ALGO_SRC ${CMAKE_SOURCE_DIR}/algo/algo.cpp
              ${CMAKE_SOURCE_DIR}/algo/PSO/pso.cpp
              ${CMAKE_SOURCE_DIR}/algo/GA/ga.cpp
              ${CMAKE_SOURCE_DIR}/algo/ABC/abc.cpp
-             ${CMAKE_SOURCE_DIR}/algo/GWO/gwo.cpp)
+             ${CMAKE_SOURCE_DIR}/algo/GWO/gwo.cpp
+             ${CMAKE_SOURCE_DIR}/algo/WOA/woa.cpp)
 set(UTILS_SRC ${CMAKE_SOURCE_DIR}/utils/utils.cpp)
 
 # Output directories

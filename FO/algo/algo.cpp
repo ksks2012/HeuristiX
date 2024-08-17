@@ -77,7 +77,7 @@ void Algo::run() {
         update_global_best();
         
         // Print best fitness value
-        //cout << "Iteration " << evaluation_count + 1 << ": Best Fitness = " << gbest_fitness << endl;
+        cout << "Iteration " << evaluation_count + 1 << ": Best Fitness = " << gbest_fitness << endl;
     }
     // Print best fitness value
     cout << "Iteration " << evaluation_count + 1 << ": Best Fitness = " << gbest_fitness << endl;
